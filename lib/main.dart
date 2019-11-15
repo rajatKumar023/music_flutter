@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
         Provider<TabBarStore>.value(value: TabBarStore()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Music',
+        debugShowCheckedModeBanner: true,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
