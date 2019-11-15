@@ -11,12 +11,26 @@ class CustomBottomNavigationBar extends StatelessWidget {
           children: <Widget>[
             Positioned(
               bottom: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 55.0,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                ),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 53.0,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                ],
               ),
             ),
             Container(
@@ -69,11 +83,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
             : Colors.transparent,
       ),
       padding: EdgeInsets.all(
-        tabBarStore.selectedTabBar == index ? 4.0 : 0.0,
+        tabBarStore.selectedTabBar == index ? 1.0 : 0.0,
       ),
       margin: EdgeInsets.only(
           bottom: tabBarStore.selectedTabBar == index ? 15.0 : 5.0),
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           if (tabBarStore.selectedTabBar != index) {
             tabBarStore.changeTabBar(index);
@@ -89,8 +103,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
           child: Icon(
             iconData,
-            color:Colors.white,
-            size: 30.0,
+            color: Colors.white,
+            size: tabBarStore.selectedTabBar == index ? 40.0 : 30.0,
           ),
         ),
       ),
