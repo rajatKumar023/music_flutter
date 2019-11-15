@@ -15,11 +15,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 55.0,
                 decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.2),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0),
-                  ),
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -73,7 +69,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             : Colors.transparent,
       ),
       padding: EdgeInsets.all(
-        tabBarStore.selectedTabBar == index ? 8.0 : 0.0,
+        tabBarStore.selectedTabBar == index ? 4.0 : 0.0,
       ),
       margin: EdgeInsets.only(
           bottom: tabBarStore.selectedTabBar == index ? 15.0 : 5.0),
@@ -88,14 +84,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50.0),
             color: tabBarStore.selectedTabBar == index
-                ? Colors.deepPurple
+                ? Colors.black
                 : Colors.transparent,
           ),
           child: Icon(
             iconData,
-            color: tabBarStore.selectedTabBar == index
-                ? Colors.white
-                : Colors.deepPurple,
+            color:Colors.white,
             size: 30.0,
           ),
         ),

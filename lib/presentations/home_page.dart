@@ -11,15 +11,23 @@ class HomePage extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Color.fromRGBO(32, 33, 37, 1),
         body: StoreObserver<TabBarStore>(
           builder: (TabBarStore tabBarStore, BuildContext context) {
             return Container(
               height: screenHeight,
               width: screenWidth,
-              child: Column(
+              child: Stack(
                 children: <Widget>[
-                  Expanded(child: _getSelectedPage(tabBarStore)),
-                  CustomBottomNavigationBar()
+                  Container(
+                    margin: EdgeInsets.only(bottom: 55.0),
+                    child: _getSelectedPage(tabBarStore),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: CustomBottomNavigationBar(),
+                  )
                 ],
               ),
             );
