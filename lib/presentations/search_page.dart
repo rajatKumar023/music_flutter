@@ -1,87 +1,153 @@
 import 'package:flutter/material.dart';
+import 'package:music_flutter/presentations/search_list_item.dart';
 
-class SearchPage extends StatelessWidget {
-  final ScrollController controller = ScrollController();
+class SearchPage extends StatefulWidget {
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  bool isSearchSelected;
+
+  @override
+  void initState() {
+    super.initState();
+
+    isSearchSelected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return isSearchSelected
+        ? Column(
             children: <Widget>[
-              Text(
-                'Search',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 45.0,
-                  fontWeight: FontWeight.bold,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 55.0,
+                color: Colors.white12,
+                child: Center(
+                  child: TextField(
+                    autofocus: true,
+                    cursorColor: Colors.white,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: GestureDetector(
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          setState(() {
+                            isSearchSelected = false;
+                          });
+                        },
+                      ),
+                      suffixIcon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(
-                width: 10.0,
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Recent Search',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Icon(
+                      Icons.access_time,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
-              Icon(
-                Icons.search,
-                size: 45,
-                color: Colors.white,
-              )
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SearchListItem();
+                  },
+                ),
+              ),
             ],
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white,
-                width: 2,
-                style: BorderStyle.solid,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
-              ),
+          )
+        : Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Search',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Icon(
+                      Icons.search,
+                      size: 45,
+                      color: Colors.white,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSearchSelected = true;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Search for songs, artists...',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Artists, Songs or Podcasts',
-                hintStyle: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-//          SizedBox(
-//            height: 20.0,
-//          ),
-//          Expanded(
-//            child: GridView.builder(
-//              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                crossAxisCount: 2,
-//                crossAxisSpacing: 10.0,
-//                mainAxisSpacing: 10.0,
-//              ),
-//              itemCount: 14,
-////              controller: controller,
-//              itemBuilder: (BuildContext context, int index) {
-//                return Container(
-//                  height: 100.0,
-//                  width: 200.0,
-//                  decoration: BoxDecoration(
-//                    borderRadius: BorderRadius.all(
-//                      Radius.circular(10.0),
-//                    ),
-//                    color: Colors.grey,
-//                  ),
-//                );
-//              },
-//            ),
-//          ),
-        ],
-      ),
-    );
+          );
   }
 }
