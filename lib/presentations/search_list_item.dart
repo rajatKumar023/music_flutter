@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_query/flutter_audio_query.dart';
+import 'package:music_flutter/services/audio_service.dart';
 
 class SearchListItem extends StatelessWidget {
   @override
@@ -45,7 +47,14 @@ class SearchListItem extends StatelessWidget {
               Icons.clear,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              AudioService.getInstance().getSongs().then((List<SongInfo> value){
+                value.forEach((SongInfo info){
+                  print('info');
+                  print(info);
+                });
+              });
+            },
           )
         ],
       ),

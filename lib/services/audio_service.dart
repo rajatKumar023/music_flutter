@@ -9,7 +9,7 @@ class AudioService {
 
   final FlutterAudioQuery audioQuery = FlutterAudioQuery();
 
-  Future<void> getArtists() async {
+  Future<List<ArtistInfo>> getArtists() async {
     List<ArtistInfo> artists = await audioQuery.getArtists();
     artists.forEach((artist) {
       print(artist);
@@ -17,17 +17,13 @@ class AudioService {
     return artists;
   }
 
-  Future<void> getAlbums() async {
+  Future<List<AlbumInfo>> getAlbums() async {
     List<AlbumInfo> albumList = await audioQuery.getAlbums();
     return albumList;
   }
 
-  Future<void> getSongs() async {
+  Future<List<SongInfo>> getSongs() async {
     List<SongInfo> songs = await audioQuery.getSongs();
-//
-//    albumList.foreach( (album){
-//      audioQuery.getSongsFromAlbum(album: album.name);
-//    } );
     return songs;
   }
 }
