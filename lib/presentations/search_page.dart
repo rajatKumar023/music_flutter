@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_flutter/customs/store_observer.dart';
 import 'package:music_flutter/presentations/search_list_item.dart';
+import 'package:music_flutter/stores/album_store.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -19,73 +21,82 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return isSearchSelected
-        ? Column(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 55.0,
-                color: Colors.white12,
-                child: Center(
-                  child: TextField(
-                    autofocus: true,
-                    cursorColor: Colors.white,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: GestureDetector(
-                        child: Icon(
-                          Icons.arrow_back,
+        ? StoreObserver<AlbumStore>(
+            builder: (AlbumStore albumStore, BuildContext context) {
+              return Column(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 55.0,
+                    color: Colors.white12,
+                    child: Center(
+                      child: TextField(
+                        autofocus: true,
+                        cursorColor: Colors.white,
+                        style: TextStyle(
+                          fontSize: 18.0,
                           color: Colors.white,
                         ),
-                        onTap: () {
-                          setState(() {
-                            isSearchSelected = false;
-                          });
-                        },
-                      ),
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: GestureDetector(
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                isSearchSelected = false;
+                              });
+                            },
+                          ),
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Recent Search',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Recent Search',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Icon(
+                          Icons.access_time,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 10.0,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: albumStore.albumsList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 15.0),
+                          child: SearchListItem(
+                            albumInfo: albumStore.albumsList[index],
+                          ),
+                        );
+                      },
                     ),
-                    Icon(
-                      Icons.access_time,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return SearchListItem();
-                  },
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            },
           )
         : Container(
             padding: EdgeInsets.symmetric(horizontal: 20.0),

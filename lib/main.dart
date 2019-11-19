@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_flutter/presentations/home_page.dart';
+import 'package:music_flutter/stores/album_store.dart';
+import 'package:music_flutter/stores/play_song_store.dart';
+import 'package:music_flutter/stores/songs_store.dart';
 import 'package:music_flutter/stores/tab_bar_store.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +14,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<TabBarStore>.value(value: TabBarStore()),
+        Provider<SongsStore>.value(value: SongsStore()),
+        Provider<AlbumStore>.value(value: AlbumStore()),
+        Provider<PlaySongStore>.value(value: PlaySongStore()),
       ],
       child: MaterialApp(
         title: 'Flutter Music',

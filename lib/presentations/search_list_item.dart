@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
-import 'package:music_flutter/services/audio_service.dart';
 
 class SearchListItem extends StatelessWidget {
+  SearchListItem({this.albumInfo});
+
+  final AlbumInfo albumInfo;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,6 +21,12 @@ class SearchListItem extends StatelessWidget {
             height: 60.0,
             width: 60.0,
             color: Colors.green,
+            child: albumInfo.albumArt != null
+                ? Image.file(
+                    File(albumInfo.albumArt),
+                    fit: BoxFit.cover,
+                  )
+                : const SizedBox(),
           ),
           SizedBox(
             width: 10.0,
@@ -26,19 +37,25 @@ class SearchListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Bareilly Ki Barfi',
+                  albumInfo.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17.0,
                   ),
                 ),
-                Text(
-                  'Album: Various Artists',
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 14.0,
-                  ),
-                )
+                albumInfo.artist != null
+                    ? Text(
+                        albumInfo.artist,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 14.0,
+                        ),
+                      )
+                    : const SizedBox()
               ],
             ),
           ),
@@ -47,14 +64,7 @@ class SearchListItem extends StatelessWidget {
               Icons.clear,
               color: Colors.white,
             ),
-            onPressed: () {
-              AudioService.getInstance().getSongs().then((List<SongInfo> value){
-                value.forEach((SongInfo info){
-                  print('info');
-                  print(info);
-                });
-              });
-            },
+            onPressed: () {},
           )
         ],
       ),
