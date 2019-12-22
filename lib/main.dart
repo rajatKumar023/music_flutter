@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_flutter/presentations/home_page.dart';
+import 'package:music_flutter/presentations/splash_page.dart';
 import 'package:music_flutter/stores/album_store.dart';
 import 'package:music_flutter/stores/play_song_store.dart';
 import 'package:music_flutter/stores/songs_store.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage(),
+        home: SplashPage(),
       ),
     );
   }

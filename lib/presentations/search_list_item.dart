@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
+import 'package:music_flutter/utils/styles.dart';
 
 class SearchListItem extends StatelessWidget {
   SearchListItem({this.albumInfo});
@@ -41,7 +42,7 @@ class SearchListItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Styles.PRIMARY_COLOR,
                     fontSize: 17.0,
                   ),
                 ),
@@ -62,7 +63,7 @@ class SearchListItem extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.clear,
-              color: Colors.white,
+              color: Styles.PRIMARY_COLOR,
             ),
             onPressed: () {},
           )

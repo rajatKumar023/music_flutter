@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_flutter/customs/store_observer.dart';
 import 'package:music_flutter/presentations/search_list_item.dart';
 import 'package:music_flutter/stores/album_store.dart';
+import 'package:music_flutter/utils/styles.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -28,21 +29,21 @@ class _SearchPageState extends State<SearchPage> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 55.0,
-                    color: Colors.white12,
+                    color: Styles.TERTIARY_COLOR,
                     child: Center(
                       child: TextField(
                         autofocus: true,
-                        cursorColor: Colors.white,
+                        cursorColor: Styles.SECONDARY_COLOR,
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.white,
+                          color: Styles.SECONDARY_COLOR,
                         ),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           prefixIcon: GestureDetector(
                             child: Icon(
                               Icons.arrow_back,
-                              color: Colors.white,
+                              color: Styles.SECONDARY_COLOR,
                             ),
                             onTap: () {
                               setState(() {
@@ -52,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           suffixIcon: Icon(
                             Icons.search,
-                            color: Colors.white,
+                            color: Styles.SECONDARY_COLOR,
                           ),
                         ),
                       ),
@@ -66,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
                         Text(
                           'Recent Search',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Styles.SECONDARY_COLOR,
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -76,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                         Icon(
                           Icons.access_time,
-                          color: Colors.white,
+                          color: Styles.TERTIARY_COLOR,
                         ),
                       ],
                     ),
@@ -109,7 +110,7 @@ class _SearchPageState extends State<SearchPage> {
                     Text(
                       'Search',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Styles.SECONDARY_COLOR,
                         fontSize: 45.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -120,7 +121,7 @@ class _SearchPageState extends State<SearchPage> {
                     Icon(
                       Icons.search,
                       size: 45,
-                      color: Colors.white,
+                      color: Styles.SECONDARY_COLOR,
                     )
                   ],
                 ),
@@ -138,7 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                     height: 50.0,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.white,
+                        color: Styles.SECONDARY_COLOR,
                         width: 2,
                         style: BorderStyle.solid,
                       ),
@@ -150,7 +151,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: Text(
                         'Search for songs, artists...',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Styles.SECONDARY_COLOR,
                           fontSize: 16.0,
                         ),
                       ),

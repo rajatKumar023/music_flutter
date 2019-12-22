@@ -38,15 +38,18 @@ class SongView extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  height: 60.0,
-                  width: 60.0,
-                  color: Colors.green,
-                  child: songAlbum != null && songAlbum.albumArt != null
-                      ? Image.file(
-                          File(songAlbum.albumArt),
-                        )
-                      : const SizedBox(),
+                ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  child: Container(
+                    height: 60.0,
+                    width: 60.0,
+                    color: Colors.green,
+                    child: songAlbum != null && songAlbum.albumArt != null
+                        ? Image.file(
+                            File(songAlbum.albumArt),
+                          )
+                        : const SizedBox(),
+                  ),
                 ),
                 SizedBox(
                   width: 10.0,
@@ -62,7 +65,7 @@ class SongView extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                       Text(
@@ -71,7 +74,7 @@ class SongView extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.white54,
+                          color: Colors.grey,
                         ),
                       )
                     ],
@@ -83,7 +86,7 @@ class SongView extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     Icons.more_vert,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   onPressed: () {},
                 )

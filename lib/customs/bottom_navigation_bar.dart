@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_flutter/customs/store_observer.dart';
 import 'package:music_flutter/stores/tab_bar_store.dart';
+import 'package:music_flutter/utils/styles.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   @override
@@ -11,26 +12,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
           children: <Widget>[
             Positioned(
               bottom: 0,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 1,
-                    color: Colors.white,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 53.0,
+                decoration: BoxDecoration(
+                  color: Styles.PRIMARY_COLOR,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20.0),
+                    topLeft: Radius.circular(20.0),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 53.0,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                ],
+                ),
               ),
             ),
             Container(
@@ -74,38 +65,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   tabBarItem({TabBarStore tabBarStore, int index, IconData iconData}) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(50.0),
-        ),
-        color: tabBarStore.selectedTabBar == index
-            ? Colors.white
-            : Colors.transparent,
-      ),
       padding: EdgeInsets.all(
         tabBarStore.selectedTabBar == index ? 1.0 : 0.0,
       ),
-      margin: EdgeInsets.only(
-          bottom: tabBarStore.selectedTabBar == index ? 15.0 : 5.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0),
       child: GestureDetector(
         onTap: () {
           if (tabBarStore.selectedTabBar != index) {
             tabBarStore.changeTabBar(index);
           }
         },
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
-            color: tabBarStore.selectedTabBar == index
-                ? Colors.black
-                : Colors.transparent,
-          ),
-          child: Icon(
-            iconData,
-            color: Colors.white,
-            size: tabBarStore.selectedTabBar == index ? 40.0 : 30.0,
-          ),
+        child: Icon(
+          iconData,
+          color:
+              tabBarStore.selectedTabBar == index ? Colors.black : Colors.grey,
+          size: 30.0,
         ),
       ),
     );
